@@ -1,6 +1,6 @@
 fn compute(a: u32, b: u32) -> u32 {
-    // TODO: change the line below to fix the compiler error and make the tests pass.
-    a + b * 4u8
+    // TODO： 更改下面的行以修复编译器错误并使测试通过。
+    a + b * 4u32
 }
 
 #[cfg(test)]
