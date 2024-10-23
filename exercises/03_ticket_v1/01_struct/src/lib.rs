@@ -1,9 +1,26 @@
-// Define a struct named `Order` with the following fields:
-// - `price`, an unsigned integer
-// - `quantity`, an unsigned integer
+// 使用以下字段定义名为 'Order' 的结构体：
+// - 'price'，一个无符号整数
+// - 'quantity'，一个无符号整数
 //
-// It should also have a method named `is_available` that returns a `true` if the quantity is
-// greater than 0, otherwise `false`.
+// 它还应该有一个名为 'is_available' 的方法，如果数量大于 0，则返回 'true'，否则返回 'false'。
+//
+
+struct Order{
+    price:u32,
+    quantity:u32,
+}
+
+impl Order{
+    fn is_available(&self)->bool{
+        if self.quantity>0{
+            true
+        }else{
+            false
+        }
+    }
+}
+
+
 
 #[cfg(test)]
 mod tests {

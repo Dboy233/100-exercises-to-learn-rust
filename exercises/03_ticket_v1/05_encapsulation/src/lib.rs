@@ -30,10 +30,16 @@ pub mod ticket {
             }
         }
 
-        // TODO: Add three public methods to the `Ticket` struct:
-        //  - `title` that returns the `title` field.
-        //  - `description` that returns the `description` field.
-        //  - `status` that returns the `status` field.
+        // TODO: 向 'Ticket' 结构体添加三个公共方法：
+        //  - 'title' 返回 'title' 字段。
+        //  - 'description' 返回 'description' 字段。
+        //  - 'status' 返回 'status' 字段。
+
+        pub fn title(&self) -> &String { &self.title }
+
+        pub fn description(&self) -> &String { &self.description }
+
+        pub fn status(&self) -> &String { &self.status }
     }
 }
 

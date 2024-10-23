@@ -1,7 +1,6 @@
 mod helpers {
-    // TODO: Make this code compile, either by adding a `use` statement or by using
-    //  the appropriate path to refer to the `Ticket` struct.
-
+    // TODO: 通过添加 'use' 语句或使用适当的路径来引用 'Ticket' 结构体，使这段代码编译。
+    use crate::Ticket;
     fn create_todo_ticket(title: String, description: String) -> Ticket {
         Ticket::new(title, description, "To-Do".into())
     }

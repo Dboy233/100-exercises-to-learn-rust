@@ -1,12 +1,12 @@
 mod ticket {
-    struct Ticket {
-        title: String,
-        description: String,
-        status: String,
+   pub struct Ticket {
+       pub title: String,
+       pub description: String,
+       pub status: String,
     }
 
     impl Ticket {
-        fn new(title: String, description: String, status: String) -> Ticket {
+       pub fn new(title: String, description: String, status: String) -> Ticket {
             if title.is_empty() {
                 panic!("Title cannot be empty");
             }
@@ -32,12 +32,11 @@ mod ticket {
     }
 }
 
-// TODO: **Exceptionally**, you'll be modifying both the `ticket` module and the `tests` module
-//  in this exercise.
+// TODO: **Exceptionally**, 在本练习中，您将修改 'ticket' 模块和 'tests' 模块。
 #[cfg(test)]
 mod tests {
-    // TODO: Add the necessary `pub` modifiers in the parent module to remove the compiler
-    //  errors about the use statement below.
+    // TODO: 在父模块中添加必要的 'pub' 修饰符，以消除下面有关 use 语句的编译器错误。
+    //
     use super::ticket::Ticket;
 
     // Be careful though! We don't want this function to compile after you have changed

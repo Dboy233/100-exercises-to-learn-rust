@@ -1,7 +1,5 @@
-// TODO: based on what we just learned about ownership, it sounds like immutable references
-//   are a good fit for our accessor methods.
-//   Change the existing implementation of `Ticket`'s accessor methods take a reference
-//   to `self` as an argument, rather than taking ownership of it.
+// TODO: 根据我们刚刚学到的关于所有权的知识，听起来不可变引用很适合我们的访问器方法。
+//   更改 'Ticket' 访问器方法的现有实现，将对 'self' 的引用作为参数，而不是获取它的所有权。
 
 pub struct Ticket {
     title: String,
@@ -34,16 +32,16 @@ impl Ticket {
         }
     }
 
-    pub fn title(self) -> String {
-        self.title
+    pub fn title(&self) -> &String {
+        &self.title
     }
 
-    pub fn description(self) -> String {
-        self.description
+    pub fn description(&self) -> &String {
+        &self.description
     }
 
-    pub fn status(self) -> String {
-        self.status
+    pub fn status(&self) -> &String {
+        &self.status
     }
 }
 
