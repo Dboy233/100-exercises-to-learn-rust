@@ -1,7 +1,30 @@
-// Define a trait named `IsEven` that has a method `is_even` that returns a `true` if `self` is
-// even, otherwise `false`.
+// 定义一个名为 'IsEven' 的 trait，该 trait 具有方法 'is_even' 如果 'self' 为 even，则返回 'true'，否则返回 'false'。
 //
 // Then implement the trait for `u32` and `i32`.
+
+trait IsEven {
+    fn is_even(&self) -> bool;
+}
+
+impl IsEven for u32 {
+    fn is_even(&self) -> bool {
+        if self % 2 == 0 {
+            true
+        } else {
+            false
+        }
+    }
+}
+impl IsEven for i32 {
+    fn is_even(&self) -> bool {
+        if self % 2 == 0 {
+            true
+        }else {
+            false
+        }
+    }
+}
+
 
 #[cfg(test)]
 mod tests {

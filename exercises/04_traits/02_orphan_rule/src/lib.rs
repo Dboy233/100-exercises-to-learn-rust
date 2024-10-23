@@ -1,11 +1,4 @@
-// TODO: this is an example of an orphan rule violation.
-//  We're implementing a foreign trait (`PartialEq`, from `std`) on
-//  a foreign type (`u32`, from `std`).
-//  Look at the compiler error to get familiar with what it looks like.
-//  Then delete the code below and move on to the next exercise.
-
-impl PartialEq for u32 {
-    fn eq(&self, _other: &Self) -> bool {
-        todo!()
-    }
-}
+// TODO: 这是违反孤立规则的一个示例。
+//  我们正在外部类型 （'u32'， from 'std'） 上实现一个外部 trait （'PartialEq'， from 'std'）。
+//  查看编译器错误以熟悉它的外观。
+//  然后删除下面的代码并继续进行下一个练习。

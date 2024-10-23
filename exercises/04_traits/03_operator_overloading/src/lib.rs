@@ -6,9 +6,13 @@ struct Ticket {
     status: String,
 }
 
-// TODO: Implement the `PartialEq` trait for `Ticket`.
+// TODO:为 'Ticket' 实现 'PartialEq' trait。
 
-impl PartialEq for Ticket {}
+impl PartialEq<Ticket> for Ticket {
+    fn eq(&self, other: &Ticket) -> bool {
+        self.title == other.title && self.description == other.description && self.status == other.status
+    }
+}
 
 #[cfg(test)]
 mod tests {
