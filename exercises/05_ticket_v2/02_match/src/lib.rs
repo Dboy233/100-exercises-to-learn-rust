@@ -1,3 +1,4 @@
+#[derive(Debug)]
 enum Shape {
     Circle,
     Square,
@@ -7,9 +8,18 @@ enum Shape {
 }
 
 impl Shape {
-    // TODO: Implement the `n_sides` method using a `match`.
+    // TODO:使用“match”实现“n_sides”方法。
     pub fn n_sides(&self) -> u8 {
-        todo!()
+        match self {
+            Shape::Circle => {
+                println!("{:?}",self);
+                0
+            }
+            Shape::Square => { 4 }
+            Shape::Rectangle => { 4 }
+            Shape::Triangle => { 3 }
+            Shape::Pentagon => { 5 }
+        }
     }
 }
 
