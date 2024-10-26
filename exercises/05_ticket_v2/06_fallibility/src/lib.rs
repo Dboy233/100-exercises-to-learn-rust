@@ -1,6 +1,8 @@
 // TODO: Convert the `Ticket::new` method to return a `Result` instead of panicking.
 //   Use `String` as the error type.
 
+use std::ffi::IntoStringError;
+
 #[derive(Debug, PartialEq)]
 struct Ticket {
     title: String,
@@ -16,25 +18,25 @@ enum Status {
 }
 
 impl Ticket {
-    pub fn new(title: String, description: String, status: Status) -> Ticket {
+    pub fn new(title: String, description: String, status: Status) -> Result<Ticket, String> {
         if title.is_empty() {
-            panic!("Title cannot be empty");
+            return Result::Err("Title cannot be empty".to_string());
         }
         if title.len() > 50 {
-            panic!("Title cannot be longer than 50 bytes");
+            return Result::Err("Title cannot be longer than 50 bytes".to_string());
         }
         if description.is_empty() {
-            panic!("Description cannot be empty");
+            return Result::Err("Description cannot be empty".to_string());
         }
         if description.len() > 500 {
-            panic!("Description cannot be longer than 500 bytes");
+            return Result::Err("Description cannot be longer than 500 bytes".to_string());
         }
 
-        Ticket {
+        Result::Ok(Ticket {
             title,
             description,
             status,
-        }
+        })
     }
 }
 
