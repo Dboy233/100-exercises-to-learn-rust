@@ -1,6 +1,7 @@
 // TODO: 使用两个变体，一个用于标题错误，一个用于描述错误。
 //   每个变体都应该包含一个字符串，并说明到底出了什么问题。
 //   您还必须更新 `Ticket::new` 的实现。
+#[derive(Debug, PartialEq, Clone)]
 enum TicketNewError {
     TitleError(String),
     DescError(String),
@@ -9,10 +10,19 @@ enum TicketNewError {
 // TODO: 当标题无效时，“easy_ticket”应该出现恐慌，使用存储在“TicketNewError”枚举的相关变体中的错误消息。
 //   当描述无效时，应使用默认描述：“未提供描述”。
 fn easy_ticket(title: String, description: String, status: Status) -> Ticket {
-    match Ticket::new(title, description,status) {
-        Ok(_) => {}
-        Err(_) => {}
-    }    
+    match Ticket::new(title.clone(), description, status.clone()) {
+        Ok(ticket) => { ticket }
+        Err(error) => {
+            match error {
+                TicketNewError::TitleError(info) => {
+                    panic!("{info}")
+                }
+                TicketNewError::DescError(_) => {
+                    Ticket::new(title, "Description not provided".to_string(), status).unwrap()
+                }
+            }
+        }
+    }
 }
 
 #[derive(Debug, PartialEq)]
@@ -36,16 +46,16 @@ impl Ticket {
         status: Status,
     ) -> Result<Ticket, TicketNewError> {
         if title.is_empty() {
-            return Err("Title cannot be empty".to_string());
+            return Err(TicketNewError::TitleError("Title cannot be empty".to_string()));
         }
         if title.len() > 50 {
-            return Err("Title cannot be longer than 50 bytes".to_string());
+            return Err(TicketNewError::DescError("Title cannot be longer than 50 bytes".to_string()));
         }
         if description.is_empty() {
-            return Err("Description cannot be empty".to_string());
+            return Err(TicketNewError::DescError("Description cannot be empty".to_string()));
         }
         if description.len() > 500 {
-            return Err("Description cannot be longer than 500 bytes".to_string());
+            return Err(TicketNewError::DescError("Description cannot be longer than 500 bytes".to_string()));
         }
 
         Ok(Ticket {

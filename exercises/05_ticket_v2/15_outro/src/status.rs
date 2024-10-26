@@ -1,10 +1,39 @@
-// TODO: Implement `TryFrom<String>` and `TryFrom<&str>` for the `Status` enum.
-//  The parsing should be case-insensitive.
+use crate::Status::{Done, InProgress, ToDo};
 
+// TODO: <String>为 'Status' 枚举实现 'TryFrom' 和 'TryFrom<&str>' 。
+//  解析应不区分大小写。
+#[derive(Debug, PartialEq, Clone)]
 pub enum Status {
     ToDo,
     InProgress,
     Done,
+}
+
+#[derive(Debug, PartialEq, Clone, thiserror::Error)]
+#[error("无法解析{msg}为Status")]
+pub struct ParsStatusError {
+    msg: String,
+}
+
+impl TryFrom<&str> for Status {
+    type Error = ParsStatusError;
+
+    fn try_from(value: &str) -> Result<Self, Self::Error> {
+        match value.to_lowercase().as_str() {
+            "todo" => { Ok(ToDo) }
+            "inprogress" => { Ok(InProgress) }
+            "done" => { Ok(Done) }
+            &_ => { Err(ParsStatusError { msg: value.to_owned() }) }
+        }
+    }
+}
+
+impl TryFrom<String> for Status {
+    type Error = ParsStatusError;
+
+    fn try_from(value: String) -> Result<Self, Self::Error> {
+         value.as_str().try_into()
+    }
 }
 
 #[cfg(test)]

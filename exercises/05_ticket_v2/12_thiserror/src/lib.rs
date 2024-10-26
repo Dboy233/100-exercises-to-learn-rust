@@ -1,12 +1,18 @@
-// TODO: Implement the `Error` trait for `TicketNewError` using `thiserror`.
-//   We've changed the enum variants to be more specific, thus removing the need for storing
-//   a `String` field into each variant.
-//   You'll also have to add `thiserror` as a dependency in the `Cargo.toml` file.
+// TODO: 使用 'thiserror' 实现 'TicketNewError' 的 'Error' trait。
+//  我们已将枚举变体更改为更具体，从而消除了在每个变体中存储 'String' 字段的需要。
+//   您还必须在 'Cargo.toml' 文件中添加 'thiserror' 作为依赖项。
 
+use thiserror::Error;
+
+#[derive(Debug,Error)]
 enum TicketNewError {
+    #[error("Title cannot be empty")]
     TitleCannotBeEmpty,
+    #[error("Title cannot be longer than 50 bytes")]
     TitleTooLong,
+    #[error("Description cannot be empty")]
     DescriptionCannotBeEmpty,
+    #[error("Description cannot be longer than 500 bytes")]
     DescriptionTooLong,
 }
 
