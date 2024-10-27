@@ -1,13 +1,22 @@
 use ticket_fields::{TicketDescription, TicketTitle};
 
-// TODO: Let's start sketching our ticket store!
-//  First task: implement `IntoIterator` on `TicketStore` to allow iterating over all the tickets
-//  it contains using a `for` loop.
+// TODO: 让我们开始绘制我们的售票处草图吧！
+//  第一个任务：在 'TicketStore' 上实现 'IntoIterator'，以允许使用 'for' 循环迭代它包含的所有票证。
+//
 //
 // Hint: you shouldn't have to implement the `Iterator` trait in this case.
 #[derive(Clone)]
 pub struct TicketStore {
     tickets: Vec<Ticket>,
+}
+
+impl IntoIterator for TicketStore {
+    type Item = Ticket;
+    type IntoIter = std::vec::IntoIter<Self::Item>;
+
+    fn into_iter(self) -> Self::IntoIter {
+         self.tickets.into_iter()
+    }
 }
 
 #[derive(Clone, Debug, PartialEq)]

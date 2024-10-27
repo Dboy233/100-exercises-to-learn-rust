@@ -4,14 +4,18 @@ mod tests {
     fn resizing() {
         let mut v = Vec::with_capacity(2);
         v.push(1);
-        v.push(2); // max capacity reached
+        v.push(2); // 达到最大容量
         assert_eq!(v.capacity(), 2);
 
-        v.push(3); // beyond capacity, needs to resize
+        v.push(3); // 超出容量，需要调整大小
 
-        // Can you guess what the new capacity will be?
-        // Beware that the standard library makes no guarantees about the
-        // algorithm used to resize the vector, so this may change in the future.
-        assert_eq!(v.capacity(), todo!());
+        // 您能猜出新的容量是多少吗？
+        // 请注意，标准库不保证用于调整向量大小的算法，因此将来可能会更改。
+
+        assert_eq!(v.capacity(), 4);
+        v.push(4);
+        assert_eq!(v.capacity(), 4);
+        v.push(5);
+        assert_eq!(v.capacity(), 8);
     }
 }
