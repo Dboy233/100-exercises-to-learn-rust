@@ -1,5 +1,11 @@
-// TODO: Define a function named `squared` that raises all `i32`s within a slice to the power of 2.
-//  The slice should be modified in place.
+// TODO: 定义一个名为 'squared' 的函数，它将切片中的所有 'i32' 提高到 2 的幂次方。应就地修改切片。
+
+fn squared(v: &mut [u32]) {
+    for x in v.iter_mut() {
+        *x *= *x
+    }
+}
+
 
 #[cfg(test)]
 mod tests {

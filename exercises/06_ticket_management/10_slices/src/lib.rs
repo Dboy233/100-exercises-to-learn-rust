@@ -1,5 +1,9 @@
-// TODO: Define a function named `sum` that takes a reference to a slice of `u32` and returns the sum of all
-//  elements in the slice.
+// TODO: 定义一个名为 'sum' 的函数，该函数引用 'u32' 的切片并返回该切片中所有元素的总和。
+//
+
+fn sum(v: &[u32]) ->u32{
+    v.iter().sum()
+}
 
 #[cfg(test)]
 mod tests {
