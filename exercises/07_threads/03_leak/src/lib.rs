@@ -1,12 +1,18 @@
-// TODO: Given a vector of integers, leak its heap allocation.
-//  Then split the resulting static slice into two halves and
-//  sum each half in a separate thread.
-//  Hint: check out `Vec::leak`.
+// TODO: 给定一个整数向量，泄漏其堆分配。
+//  然后将生成的静态切片分成两半，并在单独的线程中对每半求和。
+//  提示：查看 'Vec：：leak'。
 
 use std::thread;
 
 pub fn sum(v: Vec<i32>) -> i32 {
-    todo!()
+    let v = v.leak();
+    let mid = v.len() / 2;
+    let (v1, v2) = v.split_at(mid);
+
+    let handle1 = thread::spawn(move || v1.into_iter().sum::<i32>());
+    let handle2 = thread::spawn(move || v2.into_iter().sum::<i32>());
+
+    handle1.join().unwrap() + handle2.join().unwrap()
 }
 
 #[cfg(test)]

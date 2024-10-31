@@ -1,9 +1,20 @@
-// TODO: Given a vector of integers, split it in two halves
-//  and compute the sum of each half in a separate thread.
-//  Don't perform any heap allocation. Don't leak any memory.
+// TODO:给定一个整数向量，将其分成两半，并在单独的线程中计算每半之和。
+//  不要执行任何堆分配。不要泄露任何内存。
+
+use std::thread;
 
 pub fn sum(v: Vec<i32>) -> i32 {
-    todo!()
+    let mid = v.len() / 2;
+    let (v1, v2) = v.split_at(mid);
+    thread::scope(|s| {
+        let handle1 = s.spawn(|| {
+            v1.iter().sum::<i32>()
+        });
+        let handle2 = s.spawn(|| {
+            v2.iter().sum::<i32>()
+        });
+        handle1.join().unwrap() + handle2.join().unwrap()
+    })
 }
 
 #[cfg(test)]
